@@ -15,7 +15,9 @@ def main():
     firstname = input("Hello! What is your first name?: ")
     your_age = int(input("Now please tell me, How old are you: "))
     year = str((2018 - your_age)+100)
-    print(name + " will be 100 years old in the year " + year)
+    print(firstname + " will be 100 years old in the year " + year)
 
 main()
+    
+
     
