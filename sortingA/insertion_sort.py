@@ -13,3 +13,11 @@ class Book:
 
 def insertion_sort(books):
     for i in range(1, len(books)):
+        temp = books[i]
+        j = i
+        while j > 0 and temp.genre < books[j - 1].genre:
+            books[j] = books[j - 1]
+            j -= 1
+        books[j] = temp
+
+    return books
