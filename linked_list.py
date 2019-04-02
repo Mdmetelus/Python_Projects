@@ -35,3 +35,44 @@ class LinkedList:
             self.head = new_node
             self.tail = new_node
         # every othe case
+        else:
+            self.tail.set_next(new_node)
+            self.tail = new_node
+    
+    
+    # remove and return the value o the head node
+    def remove_from_head(self):
+        # make sure our list isn't empty
+        if not self.head and not self.tail:
+                return None
+        # take anonther reference to the head we're
+        # about to delete
+        old_head_value = self.head.value
+        # we only have a single node in the list
+        if self.head is self.tail:
+                self.head = None
+                self.tail = None
+                return old_head_value
+        # we have at least two nodes in the list
+        else:
+                # move the self.head reference to refer to the old head's next node
+                self.head = self.head.get_next()
+                return old_head_value
+        
+    def contains(self, target):
+        # make sure we dont have an empty list
+        if not self.head and not self.tail:
+            return false
+        # init a current reference to refer to the current node we're itereating on
+        current = self.head
+        #while the current node in the list is a valid Node
+        while current:
+                #check if the current node's value matches what we're looking for
+                if current.value == target:
+                    return True
+                # update the current reference to the next node in the list
+                current = crrent.get_next()
+        # we've traversed the entire list
+        return False
+
+                
