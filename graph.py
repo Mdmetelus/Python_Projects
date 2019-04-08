@@ -22,10 +22,23 @@ def debthFirstSearch(adjList, node_id):
         debthFirstSearch(adjList, child_node) # recursive call
 
 def debthFirstSearchVisted(adjList, node_id, visited):
+  # time complexity is O(n**2) = quadratic 
+  # because fir each ieration (n), you will check the visited (n) = N^2
+  # space complexity is
     print(node_id)
     visited.append(node_id)
     for child_node in adjList[node_id]:
         if child_node not in visited:
+        debthFirstSearchVisted(adjList, child_node, visited)  # recursive call
+
+def dft(adjList, node_id):
+  # time complexity is O(n) = linear
+  # space complexity is
+  nodes[node_id].color = "black"
+    # print(node_id)
+    # visited.append(node_id)
+    for child_node in adjList[node_id]:
+        if nodes[node_id].color = "white":
         debthFirstSearchVisted(adjList, child_node, visited)  # recursive call
 
 def breathFirstSearch(adjList, node_id):
