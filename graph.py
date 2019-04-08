@@ -39,10 +39,11 @@ def breathFirstSearch(adjList, node_id):
             frontier.append(next_node)
 
 def breathFirstSearchVisited(adjList, node_id):
+  # this traversal will be O(n) = linear implimentation
     print(node_id)
     frontier = []
     frontier.append(node_id)
-    visited = []
+    visited = [] # this will helps with graph as well as 
     while len(frontier) > 0:
         n = frontier.pop
         if n not in visited
