@@ -70,6 +70,22 @@ class Graph:
                   q.enqueue(new_path)
       return None
 
+# 
+    def dfs_r_path(self, start_vert, target_value, visited = None, path = none):
+        if visited is None:
+           visited = set()
+        if path = None:
+            path = []
+        visited.add(start_vert) # being used as argument and not being assessed so non brackets needed around start_vert here.
+        path = path + [start_vert]
+        if start_vert == target_value:
+            return path
+        for child_vert in self.vertices[start_vert]:
+            if child_vert not in visited:
+                new_path = self.dfs_r_path(child_vert, target_value, visited, path)
+                if new_path:
+                    return new_path
+        return None
 
 
         
