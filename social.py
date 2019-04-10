@@ -32,3 +32,18 @@ class SocialGraph:
             print("You already are friends with this person")
         else:
             self.friendships[userId].add(friendID)
+            self.friendships[friendID].add(userID)
+
+    def addUser(self, name):
+        self.lastID += 1
+        self.users[self.lastId] = User(name)
+        self.friendship[self.lastId] = set()
+
+    def populateGraph(self, nunUsers, avgFriendships):
+        self.lstId = 0
+        self.users = {}
+        self.friendships = {}
+        for i in range(0, numUsers):
+            self.addUsers(f"User {i}")
+        possibleFriendships = []
+        
