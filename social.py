@@ -10,7 +10,7 @@ class Queue:
       self.queue.append(value)
   def dequeue(self)
       if(self.size) > 0
-          return self.queu.pop(0)
+          return self.queue.pop(0)
       else:
           return None
   def size(self):
@@ -46,4 +46,12 @@ class SocialGraph:
         for i in range(0, numUsers):
             self.addUsers(f"User {i}")
         possibleFriendships = []
-        
+        for userID in self.users:
+            for friendID in range(userId + 1, self.lastID +1):
+                possibleFriendships.append((userID, friendID))
+        random.shuffle(possibleFriendships)
+        x = 0
+        # for i in range(0, math.floor(numUsers *avgFriendships)):
+        for i in range(0, (numUsers *avgFriendships //2)):
+            friendship = possibleFriendships[1]
+            self.addFriendship(friendship[0], friendship[1])   
