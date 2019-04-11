@@ -54,7 +54,15 @@ class SocialGraph:
     totalFriendships = 0
     collisions = 0
     #  a dense graph can cause collisions
-
+    while totalFriendships < targetFriendships:
+      userID = randsom.randint(1, self.lastID)
+      friendID = random.randint(1, self.lastID)
+      if self.addFriendship(userID, friend):
+        totalFriendship +=2
+      else:
+        collisions +=1
+    print(f"COLLISIONS: {collisions}")
+    # Collisons reduce the efficency of the code
 
 		possibleFriendships = []
 		for userID in self.users:
@@ -97,32 +105,32 @@ class SocialGraph:
 						q.enqueue(new_path)
 		return visited
 
-if __name__ == '__main__':
-	sg = SocialGraph()
-	start_time = time.time()
-	sg.populateGraph(1000, 5)
-	end_time = time.time()
-	print (f"runtime: {end_time - start_time} seconds")
-	connections = sg.getAllSocialPaths(1)
-	total = 0
-	for userID in connections:
-		total += len(connections[userID]) - 1
-		print(len(connections))
-		print(total / len(connections))
+# if __name__ == '__main__':
+# 	sg = SocialGraph()
+# 	start_time = time.time()
+# 	sg.populateGraph(1000, 5)
+# 	end_time = time.time()
+# 	print (f"runtime: {end_time - start_time} seconds")
+# 	connections = sg.getAllSocialPaths(1)
+# 	total = 0
+# 	for userID in connections:
+# 		total += len(connections[userID]) - 1
+# 		print(len(connections))
+# 		print(total / len(connections))
 
-	totalConnections = 0
-	totalDegrees = 0
-	iterations = 10
-	for i in range(0, iterations):
-		sg.populateGraph(1000, 5)
-		connections = sg.getAllSocialPaths(1)
-		total = 0
-		for userID in connections:
-			total += len(connections[userID]) - 1
-		totalConnections += len(connections)
-		totalDegrees += total / len(connections)
-		print("-------")
-		print(f"Friends in network: {len(connections)}")
-		print(f"Avg degrees: {total / len(connections)}")
-	print(totalConnections / iterations)
-	print(totalDegrees / iterations)
+# 	totalConnections = 0
+# 	totalDegrees = 0
+# 	iterations = 10
+# 	for i in range(0, iterations):
+# 		sg.populateGraph(1000, 5)
+# 		connections = sg.getAllSocialPaths(1)
+# 		total = 0
+# 		for userID in connections:
+# 			total += len(connections[userID]) - 1
+# 		totalConnections += len(connections)
+# 		totalDegrees += total / len(connections)
+# 		print("-------")
+# 		print(f"Friends in network: {len(connections)}")
+# 		print(f"Avg degrees: {total / len(connections)}")
+# 	print(totalConnections / iterations)
+# 	print(totalDegrees / iterations)
