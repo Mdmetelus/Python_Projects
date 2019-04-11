@@ -2,6 +2,7 @@ import random
 import math
 import time
 
+# time pcomlexity of this is O(n^2)
 class Queue:
 	def __init__(self):
 		self.queue = []
