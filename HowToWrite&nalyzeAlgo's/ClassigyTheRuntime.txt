@@ -1,0 +1,46 @@
+Students should walk away with a conceptual understanding of the following Big O classifications:
+
+O(c)
+O(log n)
+O(n)
+O(n log n)
+O(n^c)
+O(c^n)
+Students should also be able to rank these classifications, i.e., know the ordering in terms of ‘best’ to ‘worst’. They should also ideally be able to spot and identify examples of these classifications when looking at simple code snippets.
+
+Overview
+Go over each of the main big O runtime classes, explaining what each means intuitively, as well as presenting examples of each category.
+
+Follow Along
+We’ll look at some code snippets that exhibit each of the runtime classes we discuss.
+
+Challenge
+Classify the runtimes of each of the following functions:
+
+1.
+
+Copy
+def foo(n):
+  sq_root = int(math.sqrt(n))
+  for i in range(0, sq_root):
+    print(i)
+2.
+
+Copy
+def bar(x):
+  sum = 0
+  for i in range(0, 1463):
+    i += sum
+    for j in range(0, x):
+      for k in range(x, x + 15):
+        sum += 1
+3.
+
+Copy
+def baz(array):
+  print(array[1])
+  midpoint = len(array) // 2
+  for i in range(0, midpoint):
+    print(array[i])
+  for _ in range(1000):
+    print('hi')
