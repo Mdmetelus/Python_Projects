@@ -5,18 +5,15 @@ import time
 class Queue:
 	def __init__(self):
 		self.queue = []
-
-	def size(self):
-		return len(self.queue)
-
 	def enqueue(self, value):
 		self.queue.append(value)
-		
 	def dequeue(self):
-		if (self.size()) > 0:
+		if (self.size) > 0:
 			return self.queue.pop(0)
 		else:
 			return None
+	def size(self):
+		return len(self.queue)
 
 class User:
 	def __init__(self, name):
@@ -30,40 +27,27 @@ class SocialGraph:
 
 	def addFriendship(self, userID, friendID):
 		if userID == friendID:
-			print("You cannot be friends with yourself")
+			pass
+			# print("You cannot be friends with yourself")
 		elif friendID in self.friendships[userID] or userID in self.friendships[friendID]:
-			print("You already are friends with this user")
+			pass
+			# print("You already are friends with this user")
 		else:
 			self.friendships[userID].add(friendID)
 			self.friendships[friendID].add(userID)
+			return True
 	
 	def addUser(self, name):
 		self.lastID += 1
 		self.users[self.lastID] = User(name)
 		self.friendships[self.lastID] = set()
 
-  def populateGraphLinear(self, numUsers, avgFriendships):
+	def populateGraph(self, numUsers, avgFriendships):
 		self.lastID = 0
 		self.users = {}
 		self.friendships = {}
-
 		for i in range(0, numUsers):
-			self.addUser(f"User {i + 1}")
-
-    targetFriendships = (numUsers * avgFriendships) // 2
-    totalFriendships = 0
-    collisions = 0
-    #  a dense graph can cause collisions
-    while totalFriendships < targetFriendships:
-      userID = randsom.randint(1, self.lastID)
-      friendID = random.randint(1, self.lastID)
-      if self.addFriendship(userID, friend):
-        totalFriendship +=2
-      else:
-        collisions +=1
-    print(f"COLLISIONS: {collisions}")
-    # Collisons reduce the efficency of the code
-
+			self.addUser(f"User {i}")
 		possibleFriendships = []
 		for userID in self.users:
 			for friendID in range(userID + 1, self.lastID + 1):
@@ -73,25 +57,29 @@ class SocialGraph:
 			friendship = possibleFriendships[i]
 			self.addFriendship(friendship[0], friendship[1])
 
-	# def populateGraph(self, numUsers, avgFriendships):
-	# 	self.lastID = 0
-	# 	self.users = {}
-	# 	self.friendships = {}
-	# 	for i in range(0, numUsers):
-	# 		self.addUser(f"User {i}")
-	# 	possibleFriendships = []
-	# 	for userID in self.users:
-	# 		for friendID in range(userID + 1, self.lastID + 1):
-	# 			possibleFriendships.append((userID, friendID))
-	# 	random.shuffle(possibleFriendships)
-	# 	for i in range(0, (numUsers * avgFriendships // 2)):
-	# 		friendship = possibleFriendships[i]
-	# 		self.addFriendship(friendship[0], friendship[1])
+	def populateGraphLinear(self, numUsers, avgFriendships):
+		self.lastID = 0
+		self.users = {}
+		self.friendships = {}
+
+		for i in range(numUsers):
+			self.addUser(f"User {i + 1}")
+
+		targetFriendships = (numUsers * avgFriendships) // 2
+		totalFriendships = 0
+		collisions = 0
+		while totalFriendships < targetFriendships:
+			userID = random.randint(1, self.lastID)
+			friendID = random.randint(1, self.lastID)
+			if self.addFriendship(userID, friendID):
+				totalFriendships += 2
+			else:
+				collisions += 1
+		print(f"COLLISIONS: {collisions}")
 
 	def getAllSocialPaths(self, userID):
 		visited = {}
 		q = Queue()
-		print(q)
 		q.enqueue([userID])
 		while q.size() > 0:
 			path = q.dequeue()
@@ -110,7 +98,7 @@ class SocialGraph:
 # 	start_time = time.time()
 # 	sg.populateGraph(1000, 5)
 # 	end_time = time.time()
-# 	print (f"runtime: {end_time - start_time} seconds")
+# 	print (f"runtime: {end_time = start_time} seconds")
 # 	connections = sg.getAllSocialPaths(1)
 # 	total = 0
 # 	for userID in connections:
@@ -135,17 +123,15 @@ class SocialGraph:
 # 	print(totalConnections / iterations)
 # 	print(totalDegrees / iterations)
 
-
 if __name__ == '__main__':
 	sg = SocialGraph()
-	start_time = time.time()
-  numbers = 2000
-  avgFriendships = 1999
-  start_time = time.time()
-  sg.populateGraphLinear(numUsers, avgFriendships)
-  end_time time.time()
-  print(f"Linear runtime: {end_time - start_time} seconds")
-  start_time = time.time()
-  sgPopulateGraph(numUsers, avgFriendships)
-  end_time = time.tiime()
-  Print(f"Quadratic runtime: {end_time - start_time} seconds")
+	numUsers = 2000
+	avgFriendships = 50
+	linear_start_time = time.time()
+	sg.populateGraphLinear(numUsers, avgFriendships)
+	linear_end_time = time.time()
+	print(f"Linear runtime: {linear_end_time - linear_start_time} seconds")
+	q_start_time = time.time()
+	sg.populateGraph(numUsers, avgFriendships)
+	q_end_time = time.time()
+	print(f"Quadratic runtime: {q_end_time - q_start_time} seconds")
